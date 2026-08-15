@@ -1,0 +1,81 @@
+::deep .portfolio-navbar {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 0.5rem 0;
+}
+
+.portfolio-logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: #1E293B;
+    cursor: pointer;
+}
+
+.logo-bracket {
+    color: #2563EB;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+::deep .nav-link {
+    color: #64748B !important;
+    text-transform: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+    transition: color 0.2s;
+}
+
+::deep .nav-link:hover {
+    color: #2563EB !important;
+}
+
+::deep .nav-contact-btn {
+    color: #2563EB !important;
+    border-color: #2563EB !important;
+    text-transform: none;
+    font-weight: 500;
+    margin-left: 0.5rem;
+    border-radius: 8px;
+}
+
+::deep .nav-contact-btn:hover {
+    background: #2563EB !important;
+    color: white !important;
+}
+
+.portfolio-main {
+    min-height: 100vh;
+    padding-top: 64px;
+}
+
+.portfolio-footer {
+    padding: 2rem 0;
+    background: #F8FAFC;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-text {
+    color: #64748B;
+}
+
+.footer-links {
+    display: flex;
+    gap: 0.5rem;
+}
+
+::deep .mobile-drawer {
+    background: rgba(255, 255, 255, 0.98) !important;
+}

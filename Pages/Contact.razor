@@ -1,0 +1,224 @@
+@page "/contacto"
+@using Microsoft.JSInterop
+
+<PageTitle >Contacto | Jorge</PageTitle>
+
+<section class="contact-section">
+    <MudContainer MaxWidth="MaxWidth.Medium">
+        <MudText Typo="Typo.h2" Color="Color.Primary" Align="Align.Center">Hablemos</MudText>
+        <MudText Typo="Typo.h3" Align="Align.Center" Class="mb-2">Contacto</MudText>
+        <MudText Typo="Typo.body1" Align="Align.Center" Color="Color.Secondary" Class="mb-8">
+            ¿Tienes un proyecto en mente o una oportunidad laboral? ¡Escribeme!
+        </MudText>
+
+        <MudGrid Spacing="4">
+            <MudItem xs="12" md="5">
+                <MudStack Spacing="3">
+                    <MudPaper Class="contact-info-card pa-5" Elevation="0">
+                        <MudStack Row="true" Spacing="3" AlignItems="AlignItems.Center">
+                            <MudAvatar Color="Color.Primary" Size="Size.Large">
+                                <MudIcon Icon="@Icons.Material.Filled.Email" />
+                            </MudAvatar>
+                            <div>
+                                <MudText Typo="Typo.body2" Color="Color.Secondary">Email</MudText>
+                                <MudText Typo="Typo.body1"><strong>jorge2echemendia@gmail.com</strong></MudText>
+                            </div>
+                        </MudStack>
+                    </MudPaper>
+
+                    @* <MudPaper Class="contact-info-card pa-5" Elevation="0">
+                        <MudStack Row="true" Spacing="3" AlignItems="AlignItems.Center">
+                            <MudAvatar Color="Color.Secondary" Size="Size.Large">
+                                <MudIcon Icon="@Icons.Custom.Brands.LinkedIn" />
+                            </MudAvatar>
+                            <div>
+                                <MudText Typo="Typo.body2" Color="Color.Secondary">LinkedIn</MudText>
+                                <MudLink Href="https://linkedin.com" Target="_blank" Typo="Typo.body1">
+                                    <strong>/in/jorge</strong>
+                                </MudLink>
+                            </div>
+                        </MudStack>
+                    </MudPaper> *@
+
+                    <MudPaper Class="contact-info-card pa-5" Elevation="0">
+                        <MudStack Row="true" Spacing="3" AlignItems="AlignItems.Center">
+                            <MudAvatar Color="Color.Dark" Size="Size.Large">
+                                <MudIcon Icon="@Icons.Custom.Brands.GitHub" />
+                            </MudAvatar>
+                            <div>
+                                <MudText Typo="Typo.body2" Color="Color.Secondary">GitHub</MudText>
+                                <MudLink Href="https://github.com/Jorge2Echemendia" Target="_blank" Typo="Typo.body1">
+                                    <strong>/jorge</strong>
+                                </MudLink>
+                            </div>
+                        </MudStack>
+                    </MudPaper>
+
+                    <MudPaper Class="contact-info-card pa-5 availability-card" Elevation="0">
+                        <MudStack Row="true" Spacing="2" AlignItems="AlignItems.Center">
+                            <MudIcon Icon="@Icons.Material.Filled.Circle" Color="Color.Success" Size="Size.Small" />
+                            <MudText Typo="Typo.body2">
+                                <strong>Disponible para trabajar</strong>
+                            </MudText>
+                        </MudStack>
+                        <MudText Typo="Typo.body2" Color="Color.Secondary" Class="mt-2">
+                            Abierto a ofertas de trabajo, colaboraciones y proyectos freelance.
+                        </MudText>
+                    </MudPaper>
+                </MudStack>
+            </MudItem>
+
+            <MudItem xs="12" md="7">
+                <MudPaper Class="contact-form-card pa-6" Elevation="0">
+                    <MudText Typo="Typo.h6" Class="mb-4">Envia un mensaje</MudText>
+
+                    <EditForm Model="@_formModel" OnValidSubmit="@HandleSubmit">
+                        <DataAnnotationsValidator />
+                        <MudGrid Spacing="3">
+                            <MudItem xs="12" sm="6">
+                                <MudTextField @bind-Value="_formModel.Name"
+                                              Label="Nombre"
+                                              Variant="Variant.Outlined"
+                                              Required="true"
+                                              RequiredError="El nombre es requerido"
+                                              Disabled="@_sending" />
+                            </MudItem>
+                            <MudItem xs="12" sm="6">
+                                <MudTextField @bind-Value="_formModel.Email"
+                                              Label="Email"
+                                              Variant="Variant.Outlined"
+                                              Required="true"
+                                              RequiredError="El email es requerido"
+                                              InputType="InputType.Email"
+                                              Disabled="@_sending" />
+                            </MudItem>
+                            <MudItem xs="12">
+                                <MudTextField @bind-Value="_formModel.Subject"
+                                              Label="Asunto"
+                                              Variant="Variant.Outlined"
+                                              Required="true"
+                                              RequiredError="El asunto es requerido"
+                                              Disabled="@_sending" />
+                            </MudItem>
+                            <MudItem xs="12">
+                                <MudTextField @bind-Value="_formModel.Message"
+                                              Label="Mensaje"
+                                              Variant="Variant.Outlined"
+                                              Lines="5"
+                                              Required="true"
+                                              RequiredError="El mensaje es requerido"
+                                              Disabled="@_sending" />
+                            </MudItem>
+                            <MudItem xs="12">
+                                <MudButton ButtonType="ButtonType.Submit"
+                                           Variant="Variant.Filled"
+                                           Color="Color.Primary"
+                                           FullWidth="true"
+                                           Size="Size.Large"
+                                           StartIcon="@Icons.Material.Filled.Send"
+                                           Disabled="@_sending">
+                                    @if (_sending)
+                                    {
+                                        <MudProgressCircular Size="Size.Small" Indeterminate="true" Class="mr-2" />
+                                        <span>Enviando...</span>
+                                    }
+                                    else
+                                    {
+                                        <span>Enviar Mensaje</span>
+                                    }
+                                </MudButton>
+                            </MudItem>
+                        </MudGrid>
+                    </EditForm>
+
+                    @if (_showSuccess)
+                    {
+                        <MudAlert Severity="Severity.Success" Class="mt-4" ShowCloseIcon="true"
+                                  CloseIconClicked="@(() => _showSuccess = false)">
+                            ¡Mensaje enviado! Te respondere lo antes posible a jorge2echemendia@gmail.com
+                        </MudAlert>
+                    }
+
+                    @if (_showError)
+                    {
+                        <MudAlert Severity="Severity.Error" Class="mt-4" ShowCloseIcon="true"
+                                  CloseIconClicked="@(() => _showError = false)">
+                            @_errorMessage
+                        </MudAlert>
+                    }
+                </MudPaper>
+            </MudItem>
+        </MudGrid>
+    </MudContainer>
+</section>
+
+@code {
+    private ContactForm _formModel = new();
+    private bool _sending = false;
+    private bool _showSuccess = false;
+    private bool _showError = false;
+    private string _errorMessage = "";
+
+    [Inject] private IJSRuntime JSRuntime { get; set; } = default!;
+    [Inject] private ISnackbar Snackbar { get; set; } = default!;
+
+    private async Task HandleSubmit()
+    {
+        _sending = true;
+        _showSuccess = false;
+        _showError = false;
+
+        try
+        {
+            var result = await JSRuntime.InvokeAsync<EmailResult>(
+                "sendContactEmail",
+                _formModel.Name,
+                _formModel.Email,
+                _formModel.Subject,
+                _formModel.Message
+            );
+
+            if (result.Success)
+            {
+                _showSuccess = true;
+                _formModel = new();
+                Snackbar.Add("Mensaje enviado a jorge2echemendia@gmail.com", Severity.Success);
+            }
+            else
+            {
+                _showError = true;
+                _errorMessage = result.Message;
+                Snackbar.Add("Error al enviar el mensaje", Severity.Error);
+            }
+        }
+        catch (JSException)
+        {
+            _showError = true;
+            _errorMessage = "Error de conexion. Verifica tu internet e intenta de nuevo.";
+            Snackbar.Add("Error de conexion", Severity.Error);
+        }
+        catch (Exception ex)
+        {
+            _showError = true;
+            _errorMessage = "Error inesperado: " + ex.Message;
+        }
+        finally
+        {
+            _sending = false;
+        }
+    }
+
+    public class ContactForm
+    {
+        public string Name { get; set; } = "";
+        public string Email { get; set; } = "";
+        public string Subject { get; set; } = "";
+        public string Message { get; set; } = "";
+    }
+
+    public class EmailResult
+    {
+        public bool Success { get; set; }
+        public string Message { get; set; } = "";
+    }
+}

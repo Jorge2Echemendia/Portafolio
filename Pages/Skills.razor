@@ -1,0 +1,201 @@
+@page "/habilidades"
+
+<PageTitle >Habilidades | Jorge</PageTitle>
+
+<section class="skills-section">
+    <MudContainer MaxWidth="MaxWidth.Large">
+        <MudText Typo="Typo.h2" Color="Color.Primary" Align="Align.Center">Mi stack</MudText>
+        <MudText Typo="Typo.h3" Align="Align.Center" Class="mb-2">Habilidades Tecnicas</MudText>
+        <MudText Typo="Typo.body1" Align="Align.Center" Color="Color.Secondary" Class="mb-8">
+            Tecnologias y herramientas que domino para crear soluciones completas
+        </MudText>
+
+        <MudGrid Spacing="4">
+            @foreach (var category in _skillCategories)
+            {
+                <MudItem xs="12" sm="6" lg="4">
+                    <MudPaper Class="skill-category-card pa-5" Elevation="0">
+                        <MudStack Spacing="3">
+                            <MudStack Row="true" Spacing="2" AlignItems="AlignItems.Center">
+                                <MudAvatar Color="@category.Color" Size="Size.Medium">
+                                    <MudIcon Icon="@category.Icon" />
+                                </MudAvatar>
+                                <MudText Typo="Typo.h6">@category.Title</MudText>
+                            </MudStack>
+
+                            @foreach (var skill in category.Skills)
+                            {
+                                <div class="skill-item">
+                                    <MudStack Row="true" Justify="Justify.SpaceBetween" Class="mb-1">
+                                        <MudText Typo="Typo.body2"><strong>@skill.Name</strong></MudText>
+                                        <MudText Typo="Typo.caption" Color="Color.Secondary">@skill.Level%</MudText>
+                                    </MudStack>
+                                    <MudProgressLinear Color="@category.Color" Rounded="true"
+                                                       Size="Size.Small" Value="@skill.Level" />
+                                </div>
+                            }
+                        </MudStack>
+                    </MudPaper>
+                </MudItem>
+            }
+        </MudGrid>
+    </MudContainer>
+</section>
+
+<section class="extra-skills-section">
+    <MudContainer MaxWidth="MaxWidth.Large">
+        <MudText Typo="Typo.h5" Align="Align.Center" Class="mb-6">Otras Competencias</MudText>
+
+        <MudGrid Spacing="4" Justify="Justify.Center">
+            <MudItem xs="12" sm="6" md="4">
+                <MudPaper Class="extra-card pa-4" Elevation="0">
+                    <MudIcon Icon="@Icons.Material.Filled.SmartToy" Color="Color.Primary" Size="Size.Large" Class="mb-3" />
+                    <MudText Typo="Typo.h6">IA y Productividad</MudText>
+                    <MudText Typo="Typo.body2" Color="Color.Secondary" Class="mt-2">
+                        Uso de ChatGPT, DeepSeek y Claude como asistentes de desarrollo para
+                        mejorar la productividad y resolver problemas complejos.
+                    </MudText>
+                </MudPaper>
+            </MudItem>
+            <MudItem xs="12" sm="6" md="4">
+                <MudPaper Class="extra-card pa-4" Elevation="0">
+                    <MudIcon Icon="@Icons.Material.Filled.Cloud" Color="Color.Secondary" Size="Size.Large" Class="mb-3" />
+                    <MudText Typo="Typo.h6">DevOps y Despliegue</MudText>
+                    <MudText Typo="Typo.body2" Color="Color.Secondary" Class="mt-2">
+                        Control de versiones con Git/GitLab, despliegue de aplicaciones en
+                        Railway, gestion de ramas y flujos de trabajo colaborativos.
+                    </MudText>
+                </MudPaper>
+            </MudItem>
+            <MudItem xs="12" sm="6" md="4">
+                <MudPaper Class="extra-card pa-4" Elevation="0">
+                    <MudIcon Icon="@Icons.Material.Filled.PhoneAndroid" Color="Color.Success" Size="Size.Large" Class="mb-3" />
+                    <MudText Typo="Typo.h6">Desarrollo Movil</MudText>
+                    <MudText Typo="Typo.body2" Color="Color.Secondary" Class="mt-2">
+                        Desarrollo de aplicaciones multiplataforma con Flutter y Dart,
+                        utilizando Android Studio como entorno de desarrollo.
+                    </MudText>
+                </MudPaper>
+            </MudItem>
+        </MudGrid>
+    </MudContainer>
+</section>
+
+<section class="learning-section">
+    <MudContainer MaxWidth="MaxWidth.Medium">
+        <MudPaper Class="learning-card pa-6" Elevation="0">
+            <MudStack Spacing="3" AlignItems="AlignItems.Center">
+                <MudIcon Icon="@Icons.Material.Filled.School" Color="Color.Primary" Size="Size.Large" />
+                <MudText Typo="Typo.h5" Align="Align.Center">Siempre Aprendiendo</MudText>
+                <MudText Typo="Typo.body1" Align="Align.Center" Color="Color.Secondary">
+                    Como desarrollador junior, estoy constantemente aprendiendo nuevas tecnologias
+                    y mejorando mis habilidades. Mi objetivo es crecer profesionalmente y
+                    aportar valor a cada proyecto en el que participo.
+                </MudText>
+            </MudStack>
+        </MudPaper>
+    </MudContainer>
+</section>
+
+@code {
+    private List<SkillCategory> _skillCategories = new()
+    {
+        new SkillCategory
+        {
+            Title = "Backend",
+            Icon = Icons.Material.Filled.Code,
+            Color = Color.Primary,
+            Skills = new()
+            {
+                new("Node.js / Express.js", 75),
+                new("C# / .NET", 80),
+                new("Entity Framework", 70),
+                new("API REST", 75)
+            }
+        },
+        new SkillCategory
+        {
+            Title = "Frontend",
+            Icon = Icons.Material.Filled.Web,
+            Color = Color.Secondary,
+            Skills = new()
+            {
+                new("Blazor / MudBlazor", 80),
+                new("HTML / CSS", 85),
+                new("Flutter / Dart", 70),
+                new("Responsive Design", 75)
+            }
+        },
+        new SkillCategory
+        {
+            Title = "Bases de Datos",
+            Icon = Icons.Material.Filled.Storage,
+            Color = Color.Success,
+            Skills = new()
+            {
+                new("PostgreSQL", 75),
+                new("Oracle", 65),
+                new("MongoDB", 70),
+                new("SQL", 80)
+            }
+        },
+        new SkillCategory
+        {
+            Title = "Herramientas",
+            Icon = Icons.Material.Filled.Build,
+            Color = Color.Info,
+            Skills = new()
+            {
+                new("Git / GitLab", 80),
+                new("Visual Studio", 85),
+                new("VS Code", 85),
+                new("Railway", 65)
+            }
+        },
+        new SkillCategory
+        {
+            Title = "Movil",
+            Icon = Icons.Material.Filled.PhoneAndroid,
+            Color = Color.Warning,
+            Skills = new()
+            {
+                new("Flutter", 70),
+                new("Dart", 70),
+                new("Android Studio", 75),
+                new("UI/UX Movil", 65)
+            }
+        },
+        new SkillCategory
+        {
+            Title = "IA y Soft Skills",
+            Icon = Icons.Material.Filled.Psychology,
+            Color = Color.Error,
+            Skills = new()
+            {
+                new("ChatGPT / Claude", 85),
+                new("DeepSeek", 80),
+                new("Trabajo en equipo", 90),
+                new("Aprendizaje continuo", 95)
+            }
+        }
+    };
+
+    public class SkillCategory
+    {
+        public string Title { get; set; } = "";
+        public string Icon { get; set; } = "";
+        public Color Color { get; set; }
+        public List<SkillItem> Skills { get; set; } = new();
+    }
+
+    public class SkillItem
+    {
+        public SkillItem(string name, int level)
+        {
+            Name = name;
+            Level = level;
+        }
+        public string Name { get; set; }
+        public int Level { get; set; }
+    }
+}

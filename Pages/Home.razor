@@ -1,0 +1,187 @@
+@page "/"
+
+<PageTitle>Jorge | Ingeniero Informatico</PageTitle>
+
+<section class="hero-section">
+    <MudContainer MaxWidth="MaxWidth.Large">
+        <MudGrid Spacing="4" AlignItems="Center" Style="min-height: 80vh;">
+            <MudItem xs="12" md="6">
+                <MudStack Spacing="3">
+                    <MudChip T="string" Color="Color.Primary" Variant="Variant.Outlined" Size="Size.Small">
+                        Disponible para trabajar
+                    </MudChip>
+
+                    <MudText Typo="Typo.h2" Class="hero-title">
+                        Hola, soy <span class="text-highlight">Jorge</span>
+                    </MudText>
+
+                    <MudText Typo="Typo.h4" Class="hero-subtitle" Color="Color.Secondary">
+                        Ingeniero Informatico
+                    </MudText>
+
+                    <MudPaper Class="experience-card pa-5" Elevation="0">
+                        <MudText Typo="Typo.body1" Class="hero-description">
+                            Soy graduado de la <strong>Universidad de Ciencias Informaticas (UCI)</strong>
+                            en La Habana, Cuba. Desarrollador Full-Stack apasionado por crear
+                            soluciones tecnologicas eficientes. Especializado en .NET, Node.js,
+                            Flutter y bases de datos.
+                        </MudText>
+                    </MudPaper>
+                    <MudStack Row="true" Spacing="2" Class="mt-4">
+                        <MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" Href="/proyectos"
+                            StartIcon="@Icons.Material.Filled.Work">
+                            Ver Proyectos
+                        </MudButton>
+                        <MudButton Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Large" Href="/contacto"
+                            StartIcon="@Icons.Material.Filled.Email">
+                            Contactarme
+                        </MudButton>
+                    </MudStack>
+
+                    <MudStack Row="true" Spacing="1" Class="mt-2">
+                        <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Size="Size.Medium"
+                            Href="https://github.com/Jorge2Echemendia" Target="_blank" />
+                        @* <MudIconButton Icon="@Icons.Custom.Brands.LinkedIn" Size="Size.Medium"
+                                       Href="https://linkedin.com" Target="_blank" /> *@
+                        <MudIconButton Icon="@Icons.Material.Filled.Email" Size="Size.Medium"
+                            Href="mailto:jorge@email.com" />
+                    </MudStack>
+                </MudStack>
+            </MudItem>
+
+            <MudItem xs="12" md="6" Class="d-flex justify-center">
+                <div class="hero-image-container">
+                    <div class="code-window">
+                        <div class="window-header">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="window-title">developer.cs</span>
+                        </div>
+                        <div class="window-body">
+                            <code>
+                                <span class="code-keyword">public class</span> <span class="code-type">Jorge</span><br/>
+                                {<br/>
+                                &nbsp;&nbsp;<span class="code-keyword">public string</span> Role { get; } = <span class="code-string">"Full-Stack Developer"</span>;<br/>
+                                &nbsp;&nbsp;<span class="code-keyword">public string</span> University = <span class="code-string">"UCI"</span>;<br/>
+                                &nbsp;&nbsp;<span class="code-keyword">public string</span>[] Skills =<br/>
+                                &nbsp;&nbsp;{<br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">".NET"</span>, <span class="code-string">"Node.js"</span>,<br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Flutter"</span>, <span class="code-string">"Blazor"</span><br/>
+                                &nbsp;&nbsp;};<br/>
+                                &nbsp;&nbsp;<span class="code-keyword">public bool</span> IsAvailable => <span class="code-bool">true</span>;<br/>
+                                }
+                            </code>
+                        </div>
+                    </div>
+                </div>
+            </MudItem>
+        </MudGrid>
+    </MudContainer>
+</section>
+
+<section class="tech-section">
+    <MudContainer MaxWidth="MaxWidth.Large">
+        <MudText Typo="Typo.h6" Align="Align.Center" Class="mb-4" Color="Color.Secondary">
+            Tecnologias que manejo
+        </MudText>
+        <div class="tech-logos-grid">
+            @foreach (var tech in _technologies)
+            {
+                <div class="tech-logo-item">
+                    <div class="tech-logo-circle">
+                        <img src="@tech.LogoUrl" alt="@tech.Name" class="tech-logo-img" />
+                    </div>
+                    <MudText Typo="Typo.caption" Class="tech-logo-name">@tech.Name</MudText>
+                </div>
+            }
+        </div>
+    </MudContainer>
+</section>
+
+<section class="stats-section">
+    <MudContainer MaxWidth="MaxWidth.Large">
+        <MudGrid Spacing="4">
+            <MudItem xs="6" md="3">
+                <MudPaper Class="stat-card pa-4" Elevation="0">
+                    <MudText Typo="Typo.h3" Color="Color.Primary" Class="stat-number">6+</MudText>
+                    <MudText Typo="Typo.body2" Color="Color.Secondary">Tecnologias dominadas</MudText>
+                </MudPaper>
+            </MudItem>
+            <MudItem xs="6" md="3">
+                <MudPaper Class="stat-card pa-4" Elevation="0">
+                    <MudText Typo="Typo.h3" Color="Color.Primary" Class="stat-number">3</MudText>
+                    <MudText Typo="Typo.body2" Color="Color.Secondary">Bases de datos</MudText>
+                </MudPaper>
+            </MudItem>
+            <MudItem xs="6" md="3">
+                <MudPaper Class="stat-card pa-4" Elevation="0">
+                    <MudText Typo="Typo.h3" Color="Color.Primary" Class="stat-number">10+</MudText>
+                    <MudText Typo="Typo.body2" Color="Color.Secondary">Proyectos completados</MudText>
+                </MudPaper>
+            </MudItem>
+            <MudItem xs="6" md="3">
+                <MudPaper Class="stat-card pa-4" Elevation="0">
+                    <MudText Typo="Typo.h3" Color="Color.Primary" Class="stat-number">100%</MudText>
+                    <MudText Typo="Typo.body2" Color="Color.Secondary">Compromiso</MudText>
+                </MudPaper>
+            </MudItem>
+        </MudGrid>
+    </MudContainer>
+</section>
+
+<section class="cta-section">
+    <MudContainer MaxWidth="MaxWidth.Medium">
+        <MudPaper Class="cta-card pa-8" Elevation="0">
+            <MudStack Spacing="3" AlignItems="AlignItems.Center">
+                <MudText Typo="Typo.h4" Align="Align.Center">
+                    ¿Buscas un desarrollador comprometido?
+                </MudText>
+                <MudText Typo="Typo.body1" Align="Align.Center" Color="Color.Secondary">
+                    Estoy listo para contribuir a tu equipo y crecer profesionalmente.
+                </MudText>
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" Href="/contacto"
+                    StartIcon="@Icons.Material.Filled.Send">
+                    Hablemos
+                </MudButton>
+            </MudStack>
+        </MudPaper>
+    </MudContainer>
+</section>
+
+@code {
+    private List<TechLogo> _technologies = new()
+{
+new("C#", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg"),
+new(".NET", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dotnetcore/dotnetcore-original.svg"),
+new("Entity Framework", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dot-net/dot-net-plain.svg"),
+new("Blazor", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/blazor/blazor-original.svg"),
+new("MudBlazor", "https://mudblazor.com/_content/MudBlazor.Docs/images/logo.png"),
+new("Node.js", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg"),
+new("Express.js", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg"),
+new("HTML5", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg"),
+new("CSS3", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg"),
+new("Flutter", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg"),
+new("PostgreSQL", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg"),
+new("Oracle", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/oracle/oracle-original.svg"),
+new("MongoDB", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg"),
+new("Git", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg"),
+new("GitLab", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/gitlab/gitlab-original.svg"),
+new("Railway", "https://railway.com/brand/icon.png"),
+new("Visual Studio", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/visualstudio/visualstudio-plain.svg"),
+new("VS Code", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg"),
+new("Android Studio",
+"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/androidstudio/androidstudio-original.svg")
+};
+
+    public class TechLogo
+    {
+        public TechLogo(string name, string logoUrl)
+        {
+            Name = name;
+            LogoUrl = logoUrl;
+        }
+        public string Name { get; set; }
+        public string LogoUrl { get; set; }
+    }
+}

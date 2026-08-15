@@ -1,0 +1,187 @@
+@page "/proyectos"
+
+<PageTitle Typo="Typo.h2">Proyectos | Jorge</PageTitle>
+
+<section class="projects-section">
+    <MudContainer MaxWidth="MaxWidth.Large">
+        <MudText Typo="Typo.h4" Color="Color.Primary" Align="Align.Center">Mi trabajo</MudText>
+        <MudText Typo="Typo.h3" Align="Align.Center" Class="mb-2">Proyectos</MudText>
+        <MudText Typo="Typo.body1" Align="Align.Center" Color="Color.Secondary" Class="mb-6">
+            Una seleccion de proyectos que demuestran mis habilidades tecnicas
+        </MudText>
+
+        <MudGrid Spacing="4">
+            @foreach (var project in _projects)
+            {
+                <MudItem xs="12" sm="6" lg="4">
+                    <MudPaper Class="project-card" Elevation="0">
+                        <div class="project-header" style="background: @project.Color;">
+                            <MudIcon Icon="@project.Icon" Size="Size.Large" Style="color: white;" />
+                        </div>
+                        <MudCardContent Class="pa-5">
+                            <MudText Typo="Typo.h6" Class="mb-2">@project.Title</MudText>
+                            <MudText Typo="Typo.body2" Color="Color.Secondary" Class="mb-4">
+                                @project.Description
+                            </MudText>
+                            <div class="project-tags">
+                                @foreach (var tag in project.Tags)
+                                {
+                                    <MudChip T="string" Size="Size.Small" Variant="Variant.Outlined"
+                                             Color="@tag.Color" Class="project-tag">
+                                        @tag.Name
+                                    </MudChip>
+                                }
+                            </div>
+                        </MudCardContent>
+                        <MudCardActions Class="px-5 pb-4">
+                            @if (!string.IsNullOrEmpty(project.GithubUrl))
+                            {
+                                <MudButton Variant="Variant.Text" Size="Size.Small"
+                                           StartIcon="@Icons.Custom.Brands.GitHub"
+                                           Href="@project.GithubUrl" Target="_blank">
+                                    Codigo
+                                </MudButton>
+                            }
+                            @* @if (!string.IsNullOrEmpty(project.DemoUrl))
+                            {
+                                <MudButton Variant="Variant.Text" Size="Size.Small" Color="Color.Primary"
+                                           StartIcon="@Icons.Material.Filled.Launch"
+                                           Href="@project.DemoUrl" Target="_blank">
+                                    Demo
+                                </MudButton>
+                            } *@
+                        </MudCardActions>
+                    </MudPaper>
+                </MudItem>
+            }
+        </MudGrid>
+
+        <MudPaper Class="more-projects-card pa-3 mt-4" Elevation="0">
+            <MudStack Spacing="2" AlignItems="AlignItems.Center">
+                <MudIcon Icon="@Icons.Custom.Brands.GitHub" Size="Size.Large" Color="Color.Primary" />
+                <MudText Typo="Typo.h6" Align="Align.Center">¿Quieres ver mas?</MudText>
+                <MudText Typo="Typo.body2" Align="Align.Center" Color="Color.Secondary">
+                    Visita mi perfil de GitHub para ver mas proyectos y contribuciones.
+                </MudText>
+                <MudButton Variant="Variant.Outlined" Color="Color.Primary"
+                           StartIcon="@Icons.Custom.Brands.GitHub"
+                           Href="https://github.com/Jorge2Echemendia" Target="_blank">
+                    Ver GitHub
+                </MudButton>
+            </MudStack>
+        </MudPaper>
+    </MudContainer>
+</section>
+
+@code {
+    private List<Project> _projects = new()
+    {
+        new Project
+        {
+            Title = "API REST con Node.js",
+            Description = "API RESTful desarrollada con Express.js y PostgreSQL, implementando autenticacion JWT, validacion de datos y arquitectura en capas.",
+            Icon = Icons.Material.Filled.Api,
+            Color = "linear-gradient(135deg, #10B981 0%, #059669 100%)",
+            GithubUrl = "https://github.com/Jorge2Echemendia",
+            Tags = new()
+            {
+                new("Node.js", Color.Success),
+                new("Express.js", Color.Primary),
+                new("PostgreSQL", Color.Info)
+            }
+        },
+        new Project
+        {
+            Title = "CRUD con Blazor y MudBlazor",
+            Description = "Aplicacion web de gestion desarrollada con Blazor WebAssembly, MudBlazor y Entity Framework con SQL Server como backend.",
+            Icon = Icons.Material.Filled.Web,
+            Color = "linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)",
+            GithubUrl = "https://github.com/Jorge2Echemendia",
+            Tags = new()
+            {
+                new("C#", Color.Secondary),
+                new("Blazor", Color.Primary),
+                new("MudBlazor", Color.Info)
+            }
+        },
+        new Project
+        {
+            Title = "App Movil con Flutter",
+            Description = "Aplicacion movil multiplataforma desarrollada con Flutter, integrando consumos de API REST y almacenamiento local.",
+            Icon = Icons.Material.Filled.PhoneAndroid,
+            Color = "linear-gradient(135deg, #3B82F6 0%, #2563EB 100%)",
+            GithubUrl = "https://github.com/Jorge2Echemendia",
+            Tags = new()
+            {
+                new("Flutter", Color.Info),
+                new("Dart", Color.Primary),
+                new("API REST", Color.Success)
+            }
+        },
+        new Project
+        {
+            Title = "Sistema con Entity Framework",
+            Description = "Sistema de backend desarrollado con .NET y Entity Framework, conectado a Oracle con arquitectura limpia y repositorios.",
+            Icon = Icons.Material.Filled.Settings,
+            Color = "linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%)",
+             GithubUrl = "https://github.com/Jorge2Echemendia",
+            Tags = new()
+            {
+                new(".NET", Color.Secondary),
+                new("C#", Color.Primary),
+                new("Oracle", Color.Warning)
+            }
+        },
+        new Project
+        {
+            Title = "Landing Page HTML/CSS",
+            Description = "Pagina web responsive con HTML5 y CSS3 puro, implementando diseño moderno, animaciones CSS y principios de UI/UX.",
+            Icon = Icons.Material.Filled.DesignServices,
+            Color = "linear-gradient(135deg, #F59E0B 0%, #D97706 100%)",
+             GithubUrl = "https://github.com/Jorge2Echemendia",
+            DemoUrl = "#",
+            Tags = new()
+            {
+                new("HTML", Color.Warning),
+                new("CSS", Color.Info),
+                new("Responsive", Color.Success)
+            }
+        },
+        new Project
+        {
+            Title = "API con MongoDB",
+            Description = "Backend REST API con Node.js y MongoDB, implementando operaciones CRUD, filtros avanzados y despliegue en Railway.",
+            Icon = Icons.Material.Filled.Storage,
+            Color = "linear-gradient(135deg, #EF4444 0%, #DC2626 100%)",
+            GithubUrl = "https://github.com/Jorge2Echemendia",
+            Tags = new()
+            {
+                new("MongoDB", Color.Error),
+                new("Node.js", Color.Success),
+                new("Railway", Color.Secondary)
+            }
+        }
+    };
+
+    public class Project
+    {
+        public string Title { get; set; } = "";
+        public string Description { get; set; } = "";
+        public string Icon { get; set; } = "";
+        public string Color { get; set; } = "";
+        public string? GithubUrl { get; set; }
+        public string? DemoUrl { get; set; }
+        public List<ProjectTag> Tags { get; set; } = new();
+    }
+
+    public class ProjectTag
+    {
+        public ProjectTag(string name, Color color)
+        {
+            Name = name;
+            Color = color;
+        }
+        public string Name { get; set; }
+        public Color Color { get; set; }
+    }
+}

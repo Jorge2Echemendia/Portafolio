@@ -1,0 +1,134 @@
+@inherits LayoutComponentBase
+
+<MudThemeProvider Theme="@_theme" IsDarkMode="@_isDarkMode" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<div class="portfolio-app code-bg">
+    <MudAppBar Elevation="0" Fixed="true" Class="portfolio-navbar">
+        <MudContainer MaxWidth="MaxWidth.Large" Class="d-flex align-center justify-space-between">
+            <MudText Typo="Typo.h5" Class="portfolio-logo">
+                <span class="logo-bracket">&lt;</span>Jorge<span class="logo-bracket">/&gt;</span>
+            </MudText>
+
+            <MudHidden Breakpoint="Breakpoint.SmAndDown">
+                <div class="nav-links">
+                    <MudButton Href="/" Color="Color.Inherit" Class="nav-link">Inicio</MudButton>
+                    <MudButton Href="/sobre-mi" Color="Color.Inherit" Class="nav-link">Sobre Mi</MudButton>
+                    <MudButton Href="/habilidades" Color="Color.Inherit" Class="nav-link">Habilidades</MudButton>
+                    <MudButton Href="/proyectos" Color="Color.Inherit" Class="nav-link">Proyectos</MudButton>
+                    <MudButton Href="/contacto" Variant="Variant.Outlined" Class="nav-contact-btn">Contacto</MudButton>
+                    <MudToggleIconButton @bind-Toggled="@_isDarkMode"
+                                         Icon="@Icons.Material.Filled.DarkMode"
+                                         ToggledIcon="@Icons.Material.Filled.LightMode"
+                                         Color="Color.Inherit"
+                                         ToggledColor="Color.Warning"
+                                         Class="ml-2" />
+                </div>
+            </MudHidden>
+
+            <MudHidden Breakpoint="Breakpoint.MdAndUp">
+                <div class="d-flex align-center">
+                    <MudToggleIconButton @bind-Toggled="@_isDarkMode"
+                                         Icon="@Icons.Material.Filled.DarkMode"
+                                         ToggledIcon="@Icons.Material.Filled.LightMode"
+                                         Color="Color.Inherit"
+                                         ToggledColor="Color.Warning" />
+                    <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit"
+                                   OnClick="@ToggleDrawer" />
+                </div>
+            </MudHidden>
+        </MudContainer>
+    </MudAppBar>
+
+    @* <MudDrawer @bind-Open="_drawerOpen" Anchor="Anchor.Right" Elevation="1" Class="mobile-drawer">
+        <MudDrawerHeader>
+            <MudText Typo="Typo.h6">Menu</MudText>
+        </MudDrawerHeader>
+        <MudNavMenu>
+            <MudNavLink Href="/" OnClick="@CloseDrawer">Inicio</MudNavLink>
+            <MudNavLink Href="/sobre-mi" OnClick="@CloseDrawer">Sobre Mi</MudNavLink>
+            <MudNavLink Href="/habilidades" OnClick="@CloseDrawer">Habilidades</MudNavLink>
+            <MudNavLink Href="/proyectos" OnClick="@CloseDrawer">Proyectos</MudNavLink>
+            <MudNavLink Href="/contacto" OnClick="@CloseDrawer">Contacto</MudNavLink>
+        </MudNavMenu>
+    </MudDrawer> *@
+
+    <main class="portfolio-main">
+        @Body
+    </main>
+
+    <footer class="portfolio-footer">
+        <MudContainer MaxWidth="MaxWidth.Large">
+            <MudDivider Class="mb-4" />
+            <div class="footer-content">
+                <MudText Typo="Typo.body2" Class="footer-text">
+                    &copy; @DateTime.Now.Year Jorge. Construido con Blazor y MudBlazor.
+                </MudText>
+                <div class="footer-links">
+                    <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Size="Size.Small"
+                                   Href="https://github.com/Jorge2Echemendia" Target="_blank" />
+                    <MudIconButton Icon="@Icons.Material.Filled.Email" Size="Size.Small"
+                                   Href="mailto:jorge2echemendia@gmail.com" />
+                </div>
+            </div>
+        </MudContainer>
+    </footer>
+</div>
+
+@code {
+    private bool _drawerOpen = false;
+    private bool _isDarkMode = false;
+
+    private MudTheme _theme = new()
+    {
+        PaletteLight = new PaletteLight()
+        {
+            Primary = "#2563EB",
+            Secondary = "#7C3AED",
+            Background = "#F8FAFC",
+            Surface = "#FFFFFF",
+            AppbarBackground = "#FFFFFF",
+            AppbarText = "#1E293B",
+            TextPrimary = "#1E293B",
+            TextSecondary = "#64748B",
+            DrawerBackground = "#FFFFFF",
+            DrawerText = "#1E293B",
+            Success = "#10B981",
+            Error = "#EF4444",
+            Warning = "#F59E0B",
+            Info = "#3B82F6"
+        },
+        PaletteDark = new PaletteDark()
+        {
+            Primary = "#7e6fff",
+        Surface = "#1e1e2d",
+        Background = "#1a1a27",
+        BackgroundGray = "#151521",
+        AppbarText = "#92929f",
+        AppbarBackground = "rgba(26,26,39,0.8)",
+        DrawerBackground = "#1a1a27",
+        ActionDefault = "#74718e",
+        ActionDisabled = "#9999994d",
+        ActionDisabledBackground = "#605f6d4d",
+        TextPrimary = "#FFFFFF",
+        TextSecondary = "#92929f",
+        TextDisabled = "#ffffff33",
+        DrawerIcon = "#92929f",
+        DrawerText = "#92929f",
+        GrayLight = "#2a2833",
+        GrayLighter = "#1e1e2d",
+        Info = "#4a86ff",
+        Success = "#3dcb6c",
+        Warning = "#ffb545",
+        Error = "#ff3f5f",
+        LinesDefault = "#33323e",
+        TableLines = "#33323e",
+        Divider = "#292838",
+        OverlayLight = "#1e1e2d80",
+        }
+    };
+
+    private void ToggleDrawer() => _drawerOpen = !_drawerOpen;
+    private void CloseDrawer() => _drawerOpen = false;
+}
