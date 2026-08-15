@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jorge | Portafolio</title>
+</head>
+<body>
+    <script>
+        // Guarda la URL completa que el usuario intentaba visitar
+        sessionStorage.redirect = location.href;
+        // Determina la ruta base de tu sitio (asume que tu repositorio se llama "Portafolio")
+        var basePath = '/Portafolio/';
+        // Redirige a la raíz de tu sitio
+        location.replace(basePath);
+    </script>
+</body>
+</html>

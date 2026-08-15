@@ -32,6 +32,27 @@
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
     <script src="_content/MudBlazor/MudBlazor.min.js"></script>
+
+     <script>
+        (function() {
+            var redirect = sessionStorage.redirect;
+            if (redirect) {
+                sessionStorage.removeItem('redirect');
+                // Extrae la ruta relativa (ej. /sobre-mi)
+                var url = new URL(redirect);
+                var path = url.pathname; // ej. /Portafolio/sobre-mi
+                // Quita la parte del repositorio (Portafolio) para obtener la ruta interna
+                var base = '/Portafolio';
+                if (path.startsWith(base)) {
+                    var target = path.substring(base.length); // ej. /sobre-mi
+                    if (target && target !== '/') {
+                        // Navega a la ruta usando el enrutador de Blazor (cambia el hash)
+                        window.location.hash = target;
+                    }
+                }
+            }
+        })();
+    </script>
 </body>
 
 </html>
