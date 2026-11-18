@@ -4,26 +4,26 @@
 <MudDialogProvider />
 <MudSnackbarProvider />
 
-<div class="portfolio-app code-bg">
+<div class="@AppClass">
     <MudAppBar Elevation="0" Fixed="true" Class="portfolio-navbar">
         <MudContainer MaxWidth="MaxWidth.Large" Class="d-flex align-center justify-space-between">
-            <MudText Typo="Typo.h5" Class="portfolio-logo">
+            <MudLink Href="/" Underline="Underline.None" Class="portfolio-logo">
                 <span class="logo-bracket">&lt;</span>Jorge<span class="logo-bracket">/&gt;</span>
-            </MudText>
+            </MudLink>
 
             <MudHidden Breakpoint="Breakpoint.SmAndDown">
                 <div class="nav-links">
-                    <MudButton Href="https://jorge2echemendia.github.io/Portafolio/" Color="Color.Inherit" Class="nav-link">Inicio</MudButton>
-                    <MudButton Href="/Portafolio/sobre-mi" Color="Color.Inherit" Class="nav-link">Sobre Mi</MudButton>
-                    <MudButton Href="/Portafolio/habilidades" Color="Color.Inherit" Class="nav-link">Habilidades</MudButton>
-                    <MudButton Href="/Portafolio/proyectos" Color="Color.Inherit" Class="nav-link">Proyectos</MudButton>
-                    <MudButton Href="/Portafolio/contacto" Variant="Variant.Outlined" Class="nav-contact-btn">Contacto</MudButton>
+                    <MudButton Href="/" Color="Color.Inherit" Class="nav-link">Inicio</MudButton>
+                    <MudButton Href="/sobre-mi" Color="Color.Inherit" Class="nav-link">Sobre Mi</MudButton>
+                    <MudButton Href="/habilidades" Color="Color.Inherit" Class="nav-link">Habilidades</MudButton>
+                    <MudButton Href="/proyectos" Color="Color.Inherit" Class="nav-link">Proyectos</MudButton>
+                    <MudButton Href="/contacto" Variant="Variant.Filled" Color="Color.Primary" Class="nav-contact-btn">Contacto</MudButton>
                     <MudToggleIconButton @bind-Toggled="@_isDarkMode"
                                          Icon="@Icons.Material.Filled.DarkMode"
                                          ToggledIcon="@Icons.Material.Filled.LightMode"
                                          Color="Color.Inherit"
                                          ToggledColor="Color.Warning"
-                                         Class="ml-2" />
+                                         Class="theme-toggle" />
                 </div>
             </MudHidden>
 
@@ -41,18 +41,20 @@
         </MudContainer>
     </MudAppBar>
 
-    @* <MudDrawer @bind-Open="_drawerOpen" Anchor="Anchor.Right" Elevation="1" Class="mobile-drawer">
-        <MudDrawerHeader>
-            <MudText Typo="Typo.h6">Menu</MudText>
-        </MudDrawerHeader>
-        <MudNavMenu>
+    <MudDrawer @bind-Open="_drawerOpen" Anchor="Anchor.Right" Elevation="0" Variant="DrawerVariant.Temporary" Class="mobile-drawer">
+        <div class="drawer-head">
+            <MudText Typo="Typo.h6" Class="portfolio-logo">
+                <span class="logo-bracket">&lt;</span>Jorge<span class="logo-bracket">/&gt;</span>
+            </MudText>
+        </div>
+        <MudNavMenu Class="drawer-nav">
             <MudNavLink Href="/" OnClick="@CloseDrawer">Inicio</MudNavLink>
-            <MudNavLink Href="/Portafolio/sobre-mi" OnClick="@CloseDrawer">Sobre Mi</MudNavLink>
-            <MudNavLink Href="/Portafolio/habilidades" OnClick="@CloseDrawer">Habilidades</MudNavLink>
-            <MudNavLink Href="/Portafolio/proyectos"" OnClick="@CloseDrawer">Proyectos</MudNavLink>
-            <MudNavLink Href="/Portafolio/contacto" OnClick="@CloseDrawer">Contacto</MudNavLink>
+            <MudNavLink Href="/sobre-mi" OnClick="@CloseDrawer">Sobre Mi</MudNavLink>
+            <MudNavLink Href="/habilidades" OnClick="@CloseDrawer">Habilidades</MudNavLink>
+            <MudNavLink Href="/proyectos" OnClick="@CloseDrawer">Proyectos</MudNavLink>
+            <MudNavLink Href="/contacto" OnClick="@CloseDrawer">Contacto</MudNavLink>
         </MudNavMenu>
-    </MudDrawer> *@
+    </MudDrawer>
 
     <main class="portfolio-main">
         @Body
@@ -60,7 +62,6 @@
 
     <footer class="portfolio-footer">
         <MudContainer MaxWidth="MaxWidth.Large">
-            <MudDivider Class="mb-4" />
             <div class="footer-content">
                 <MudText Typo="Typo.body2" Class="footer-text">
                     &copy; @DateTime.Now.Year Jorge. Construido con Blazor y MudBlazor.
@@ -77,55 +78,61 @@
 </div>
 
 @code {
-    private bool _drawerOpen = false;
-    private bool _isDarkMode = false;
+    private bool _drawerOpen;
+    private bool _isDarkMode = true;
 
-    private MudTheme _theme = new()
+    private string AppClass => _isDarkMode ? "portfolio-app is-dark" : "portfolio-app";
+
+    private readonly MudTheme _theme = new()
     {
-        PaletteLight = new PaletteLight()
+        PaletteLight = new PaletteLight
         {
             Primary = "#2563EB",
-            Secondary = "#7C3AED",
-            Background = "#F8FAFC",
+            Secondary = "#6366F1",
+            Background = "#F4F7FB",
             Surface = "#FFFFFF",
-            AppbarBackground = "#FFFFFF",
-            AppbarText = "#1E293B",
-            TextPrimary = "#1E293B",
+            AppbarBackground = "rgba(244,247,251,0.72)",
+            AppbarText = "#0F172A",
+            TextPrimary = "#0F172A",
             TextSecondary = "#64748B",
             DrawerBackground = "#FFFFFF",
-            DrawerText = "#1E293B",
+            DrawerText = "#0F172A",
             Success = "#10B981",
             Error = "#EF4444",
             Warning = "#F59E0B",
-            Info = "#3B82F6"
+            Info = "#3B82F6",
+            ActionDefault = "#64748B",
+            Divider = "rgba(15,23,42,0.08)",
+            LinesDefault = "rgba(15,23,42,0.08)"
         },
-        PaletteDark = new PaletteDark()
+        PaletteDark = new PaletteDark
         {
-            Primary = "#7e6fff",
-        Surface = "#1e1e2d",
-        Background = "#1a1a27",
-        BackgroundGray = "#151521",
-        AppbarText = "#92929f",
-        AppbarBackground = "rgba(26,26,39,0.8)",
-        DrawerBackground = "#1a1a27",
-        ActionDefault = "#74718e",
-        ActionDisabled = "#9999994d",
-        ActionDisabledBackground = "#605f6d4d",
-        TextPrimary = "#FFFFFF",
-        TextSecondary = "#92929f",
-        TextDisabled = "#ffffff33",
-        DrawerIcon = "#92929f",
-        DrawerText = "#92929f",
-        GrayLight = "#2a2833",
-        GrayLighter = "#1e1e2d",
-        Info = "#4a86ff",
-        Success = "#3dcb6c",
-        Warning = "#ffb545",
-        Error = "#ff3f5f",
-        LinesDefault = "#33323e",
-        TableLines = "#33323e",
-        Divider = "#292838",
-        OverlayLight = "#1e1e2d80",
+            Primary = "#3B82F6",
+            Secondary = "#818CF8",
+            Background = "#07080D",
+            Surface = "#101218",
+            BackgroundGray = "#0B0C12",
+            AppbarText = "#F4F4F5",
+            AppbarBackground = "rgba(7,8,13,0.72)",
+            DrawerBackground = "#0C0E14",
+            ActionDefault = "#A1A1AA",
+            ActionDisabled = "#9999994d",
+            ActionDisabledBackground = "#605f6d4d",
+            TextPrimary = "#F4F4F5",
+            TextSecondary = "#A1A1AA",
+            TextDisabled = "#ffffff33",
+            DrawerIcon = "#A1A1AA",
+            DrawerText = "#E4E4E7",
+            GrayLight = "#181A22",
+            GrayLighter = "#101218",
+            Info = "#60A5FA",
+            Success = "#34D399",
+            Warning = "#FBBF24",
+            Error = "#FB7185",
+            LinesDefault = "rgba(255,255,255,0.08)",
+            TableLines = "rgba(255,255,255,0.08)",
+            Divider = "rgba(255,255,255,0.08)",
+            OverlayLight = "rgba(0,0,0,0.6)"
         }
     };
 

@@ -4,11 +4,13 @@
 
 <section class="skills-section">
     <MudContainer MaxWidth="MaxWidth.Large">
-        <MudText Typo="Typo.h2" Color="Color.Primary" Align="Align.Center">Mi stack</MudText>
-        <MudText Typo="Typo.h3" Align="Align.Center" Class="mb-2">Habilidades Tecnicas</MudText>
-        <MudText Typo="Typo.body1" Align="Align.Center" Color="Color.Secondary" Class="mb-8">
+        <div class="section-center" style="text-align:center;">
+        <MudText Typo="Typo.body2" Align="Align.Center" Class="section-kicker">Mi stack</MudText>
+        <MudText Typo="Typo.h3" Align="Align.Center" Class="page-title mb-2">Habilidades Tecnicas</MudText>
+        <MudText Typo="Typo.body1" Align="Align.Center" Class="page-lead mb-8">
             Tecnologias y herramientas que domino para crear soluciones completas
         </MudText>
+        </div>
 
         <MudGrid Spacing="4">
             @foreach (var category in _skillCategories)
@@ -44,7 +46,7 @@
 
 <section class="extra-skills-section">
     <MudContainer MaxWidth="MaxWidth.Large">
-        <MudText Typo="Typo.h5" Align="Align.Center" Class="mb-6">Otras Competencias</MudText>
+        <MudText Typo="Typo.h5" Align="Align.Center" Class="page-title mb-6">Otras Competencias</MudText>
 
         <MudGrid Spacing="4" Justify="Justify.Center">
             <MudItem xs="12" sm="6" md="4">

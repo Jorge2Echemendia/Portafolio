@@ -1,14 +1,15 @@
 @page "/proyectos"
 
-<PageTitle Typo="Typo.h2">Proyectos | Jorge</PageTitle>
-
+<PageTitle>Proyectos | Jorge</PageTitle>
 <section class="projects-section">
     <MudContainer MaxWidth="MaxWidth.Large">
-        <MudText Typo="Typo.h4" Color="Color.Primary" Align="Align.Center">Mi trabajo</MudText>
-        <MudText Typo="Typo.h3" Align="Align.Center" Class="mb-2">Proyectos</MudText>
-        <MudText Typo="Typo.body1" Align="Align.Center" Color="Color.Secondary" Class="mb-6">
-            Una seleccion de proyectos que demuestran mis habilidades tecnicas
-        </MudText>
+        <div class="section-center" style="text-align:center;">
+            <MudText Typo="Typo.body2" Align="Align.Center" Class="section-kicker">Mi trabajo</MudText>
+            <MudText Typo="Typo.h3" Align="Align.Center" Class="page-title mb-2">Proyectos</MudText>
+            <MudText Typo="Typo.body1" Align="Align.Center" Class="page-lead mb-6">
+                Una seleccion de proyectos que demuestran mis habilidades tecnicas
+            </MudText>
+        </div>
 
         <MudGrid Spacing="4">
             @foreach (var project in _projects)

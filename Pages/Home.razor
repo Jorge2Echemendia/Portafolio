@@ -4,53 +4,49 @@
 
 <section class="hero-section">
     <MudContainer MaxWidth="MaxWidth.Large">
-        <MudGrid Spacing="4" AlignItems="Center" Style="min-height: 80vh;">
+        <MudGrid Spacing="6" AlignItems="Center">
             <MudItem xs="12" md="6">
-                <MudStack Spacing="3">
-                    <MudChip T="string" Color="Color.Primary" Variant="Variant.Outlined" Size="Size.Small">
+                <MudStack Spacing="3" Class="hero-copy">
+                    <MudChip T="string" Variant="Variant.Outlined" Size="Size.Small" Class="status-pill">
                         Disponible para trabajar
                     </MudChip>
 
-                    <MudText Typo="Typo.h2" Class="hero-title">
+                    <MudText Typo="Typo.h1" Class="hero-title">
                         Hola, soy <span class="text-highlight">Jorge</span>
                     </MudText>
 
-                    <MudText Typo="Typo.h4" Class="hero-subtitle" Color="Color.Secondary">
-                        Ingeniero Informatico
+                    <MudText Typo="Typo.h5" Class="hero-subtitle">
+                        Ingeniero informatico y desarrollador full-stack
                     </MudText>
 
-                    <MudPaper Class="experience-card pa-5" Elevation="0">
-                        <MudText Typo="Typo.body1" Class="hero-description">
-                            Soy graduado de la <strong>Universidad de Ciencias Informaticas (UCI)</strong>
-                            en La Habana, Cuba. Desarrollador Full-Stack apasionado por crear
-                            soluciones tecnologicas eficientes. Especializado en .NET, Node.js,
-                            Flutter y bases de datos.
-                        </MudText>
-                    </MudPaper>
-                    <MudStack Row="true" Spacing="2" Class="mt-4">
-                        <MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" Href="/Portafolio/proyectos""
+                    <MudText Typo="Typo.body1" Class="hero-lead">
+                        Graduado de la <strong>Universidad de Ciencias Informaticas (UCI)</strong>
+                        en La Habana. Construyo productos web y moviles con .NET, Node.js,
+                        Flutter y bases de datos.
+                    </MudText>
+
+                    <MudStack Row="true" Spacing="2" Class="hero-actions">
+                        <MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" Href="/proyectos"
                             StartIcon="@Icons.Material.Filled.Work">
-                            Ver Proyectos
+                            Ver proyectos
                         </MudButton>
-                        <MudButton Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Large" Href="/Portafolio/contacto"
+                        <MudButton Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Large" Href="/contacto"
                             StartIcon="@Icons.Material.Filled.Email">
                             Contactarme
                         </MudButton>
                     </MudStack>
 
-                    <MudStack Row="true" Spacing="1" Class="mt-2">
+                    <MudStack Row="true" Spacing="1">
                         <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Size="Size.Medium"
                             Href="https://github.com/Jorge2Echemendia" Target="_blank" />
-                        @* <MudIconButton Icon="@Icons.Custom.Brands.LinkedIn" Size="Size.Medium"
-                                       Href="https://linkedin.com" Target="_blank" /> *@
                         <MudIconButton Icon="@Icons.Material.Filled.Email" Size="Size.Medium"
-                            Href="mailto:jorge@email.com" />
+                            Href="mailto:jorge2echemendia@gmail.com" />
                     </MudStack>
                 </MudStack>
             </MudItem>
 
             <MudItem xs="12" md="6" Class="d-flex justify-center">
-                <div class="hero-image-container">
+                <div class="code-stage">
                     <div class="code-window">
                         <div class="window-header">
                             <span class="dot red"></span>
@@ -82,70 +78,78 @@
 
 <section class="tech-section">
     <MudContainer MaxWidth="MaxWidth.Large">
-        <MudText Typo="Typo.h6" Align="Align.Center" Class="mb-4" Color="Color.Secondary">
-            Tecnologias que manejo
+        <MudText Typo="Typo.body2" Align="Align.Center" Class="section-kicker mb-4">
+            Tecnologias
         </MudText>
-        <div class="tech-logos-grid">
-            @foreach (var tech in _technologies)
-            {
-                <div class="tech-logo-item">
-                    <div class="tech-logo-circle">
-                        <img src="@tech.LogoUrl" alt="@tech.Name" class="tech-logo-img" />
+        <div class="marquee">
+            <div class="marquee-track">
+                @foreach (var tech in _technologies.Concat(_technologies))
+                {
+                    <div class="tech-pill">
+                        <div class="tech-logo-circle">
+                            <img src="@tech.LogoUrl" alt="" class="tech-logo-img" />
+                        </div>
+                        <span class="tech-logo-name">@tech.Name</span>
                     </div>
-                    <MudText Typo="Typo.caption" Class="tech-logo-name">@tech.Name</MudText>
-                </div>
-            }
+                }
+            </div>
         </div>
     </MudContainer>
 </section>
 
 <section class="stats-section">
     <MudContainer MaxWidth="MaxWidth.Large">
-        <MudGrid Spacing="4">
-            <MudItem xs="6" md="3">
-                <MudPaper Class="stat-card pa-4" Elevation="0">
-                    <MudText Typo="Typo.h3" Color="Color.Primary" Class="stat-number">6+</MudText>
-                    <MudText Typo="Typo.body2" Color="Color.Secondary">Tecnologias dominadas</MudText>
-                </MudPaper>
-            </MudItem>
-            <MudItem xs="6" md="3">
-                <MudPaper Class="stat-card pa-4" Elevation="0">
-                    <MudText Typo="Typo.h3" Color="Color.Primary" Class="stat-number">3</MudText>
-                    <MudText Typo="Typo.body2" Color="Color.Secondary">Bases de datos</MudText>
-                </MudPaper>
-            </MudItem>
-            <MudItem xs="6" md="3">
-                <MudPaper Class="stat-card pa-4" Elevation="0">
-                    <MudText Typo="Typo.h3" Color="Color.Primary" Class="stat-number">10+</MudText>
-                    <MudText Typo="Typo.body2" Color="Color.Secondary">Proyectos completados</MudText>
-                </MudPaper>
-            </MudItem>
-            <MudItem xs="6" md="3">
-                <MudPaper Class="stat-card pa-4" Elevation="0">
-                    <MudText Typo="Typo.h3" Color="Color.Primary" Class="stat-number">100%</MudText>
-                    <MudText Typo="Typo.body2" Color="Color.Secondary">Compromiso</MudText>
-                </MudPaper>
-            </MudItem>
-        </MudGrid>
+        <div class="bento-grid">
+            <MudPaper Class="glass-card bento-card bento-feature pa-6" Elevation="0">
+                <MudStack Spacing="2" Justify="Justify.SpaceBetween" Style="height:100%;">
+                    <MudText Typo="Typo.caption" Class="bento-kicker">Enfoque</MudText>
+                    <div>
+                        <MudText Typo="Typo.h4" Class="page-title mb-3">De la API a la interfaz</MudText>
+                        <MudText Typo="Typo.body1" Class="stat-copy">
+                            Backend con .NET y Node.js, interfaces con Blazor y apps moviles con Flutter.
+                            El mismo criterio de claridad en cada capa.
+                        </MudText>
+                    </div>
+                </MudStack>
+            </MudPaper>
+            <MudPaper Class="stat-card bento-card pa-5" Elevation="0">
+                <MudText Typo="Typo.h3" Color="Color.Primary" Class="stat-number">6+</MudText>
+                <MudText Typo="Typo.body2" Class="mt-2" Style="color:var(--muted)">Tecnologias dominadas</MudText>
+            </MudPaper>
+            <MudPaper Class="stat-card bento-card pa-5" Elevation="0">
+                <MudText Typo="Typo.h3" Color="Color.Primary" Class="stat-number">3</MudText>
+                <MudText Typo="Typo.body2" Class="mt-2" Style="color:var(--muted)">Bases de datos</MudText>
+            </MudPaper>
+            <MudPaper Class="stat-card bento-card pa-5" Elevation="0">
+                <MudText Typo="Typo.h3" Color="Color.Primary" Class="stat-number">10+</MudText>
+                <MudText Typo="Typo.body2" Class="mt-2" Style="color:var(--muted)">Proyectos completados</MudText>
+            </MudPaper>
+            <MudPaper Class="stat-card bento-card pa-5" Elevation="0">
+                <MudText Typo="Typo.h3" Color="Color.Primary" Class="stat-number">100%</MudText>
+                <MudText Typo="Typo.body2" Class="mt-2" Style="color:var(--muted)">Compromiso</MudText>
+            </MudPaper>
+        </div>
     </MudContainer>
 </section>
 
 <section class="cta-section">
     <MudContainer MaxWidth="MaxWidth.Medium">
-        <MudPaper Class="cta-card pa-8" Elevation="0">
-            <MudStack Spacing="3" AlignItems="AlignItems.Center">
-                <MudText Typo="Typo.h4" Align="Align.Center">
-                    ¿Buscas un desarrollador comprometido?
-                </MudText>
-                <MudText Typo="Typo.body1" Align="Align.Center" Color="Color.Secondary">
-                    Estoy listo para contribuir a tu equipo y crecer profesionalmente.
-                </MudText>
-                <MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" Href="/Portafolio/contacto"
-                    StartIcon="@Icons.Material.Filled.Send">
-                    Hablemos
-                </MudButton>
-            </MudStack>
-        </MudPaper>
+        <div class="glow-frame">
+            <div class="cta-inner">
+                <MudStack Spacing="3" AlignItems="AlignItems.Center">
+                    <MudText Typo="Typo.h4" Align="Align.Center" Class="page-title">
+                        ¿Buscas un desarrollador comprometido?
+                    </MudText>
+                    <MudText Typo="Typo.body1" Align="Align.Center" Class="page-lead">
+                        Estoy listo para contribuir a tu equipo y crecer profesionalmente.
+                    </MudText>
+                    <MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" Href="/contacto"
+                        StartIcon="@Icons.Material.Filled.Send">
+                        Hablemos
+                    </MudButton>
+                </MudStack>
+            </div>
+        </div>
     </MudContainer>
 </section>
 
